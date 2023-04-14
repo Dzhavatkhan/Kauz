@@ -40,18 +40,18 @@
   </header>
 
 <main >
-  <div class="container me-1 mt-5">
+  <div class="container mt-5">
      <div class="row mt-4 ">
       @foreach ($videos as $video)
       <div class="col-3">
-          <h3>{{$video->video_name}}</h3>
-          <p>{{$video->video_description}} </p>
-          <a href="http://127.0.0.1/openserver/phpmyadmin/index.php?route=/sql&db=kauz&table=videos&pos=0">
-            <video width="150" height="300" controls="controls" poster="video/duel.jpg">
+
+          <a href="{{route('video', $video->id)}}">
+            <video width="412" height="209" controls="controls" poster="video/duel.jpg">
               <source src="{{$video->video}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
             </video>
           </a>
-          <p></p>
+          <h3>{{$video->video_name}}</h3>
+          <p>{{$video->video_description}} </p>
 
 
       </div>         

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,10 +15,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     return view('profile', compact)
-    // }
+    public function index()
+    {
+        $profile = User::find(Auth::user()->id);
+        $my_videos = Video::find(Auth::user()->id);
+        return view('profile', [
+            'profile' => $profile,
+            'my_videos' => $my_videos
+            ]
+        );
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

@@ -14,6 +14,12 @@
         <input type="file" name="video">
                 
         <input type="submit">
+
+        @foreach ($tags as $tag)
+            <br><br>
+            <input type="hidden" name="id" value="{{$tag->id}}">
+            <button name="{{$tag->tag}}" >{{$tag->tag}}</button>
+        @endforeach
     </form>
 </body>
 </html>

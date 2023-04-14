@@ -9,6 +9,10 @@
 </head>
 
 <body>
+    <nav>
+        <a href="">Videos</a>
+        <a href="">Users</a>
+    </nav>
     <a href="{{route('admin.logout')}}">Back</a>
 </body>
 

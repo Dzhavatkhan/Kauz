@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\VideoResource;
+use App\Models\Comment;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\VideoHosting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
@@ -20,15 +24,17 @@ class VideoController extends Controller
         // return VideoResource::collection(Video::all());
         $videos = Video::all();
         return view('welcome', [
-            "videos" =>$videos,
-
+            "videos" =>$videos
         ]);
     }
 
     public function profile_video()
     {
-        return view('addVideo');
+         $tags = Tag::all();
+         return view('addVideo', compact('tags'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -42,6 +48,7 @@ class VideoController extends Controller
             "video_name" => ['required', 'string'],
             "video_description" => ['sometimes'],
             "video" => ['file']
+
         ]);
         $upload_folder = 'public/storage/videos/';
 
@@ -55,6 +62,30 @@ class VideoController extends Controller
             "video_description" => $data['video_description'],
             "video" => $filename
         ]);
+        if($video){
+            return redirect(route("profile"));
+        }
+
+        // $cat;
+        // $music;
+        // $extrime;
+        // $animals;
+        // $dog;
+        // $food;
+
+        
+
+            // VideoHosting::create([
+            //     "video_id" => Video::find(Auth::user()->id),
+            //     "user_id" => User::find(Auth::user()->id),
+            //     "comment_id" => null,
+            //     "like_id" => null,
+            //     "dislike_id" => null,
+            //     "tag_id" => Tag::find(Auth::user()->id)
+
+    
+            // ]);
+
 
     
         // if($video){
@@ -75,7 +106,8 @@ class VideoController extends Controller
      */
     public function show($id)
     {
- 
+        $video = Video::findOrFail($id);
+        return view("video", compact('video'));
     }
 
     /**

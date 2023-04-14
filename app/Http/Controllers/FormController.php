@@ -72,11 +72,7 @@ class FormController extends Controller
         ]);
     }
 
-    public function indexProfile()
-    {
-        $profile = User::find(Auth::user()->id);
-        return view('profile', compact('profile'));
-    }
+
 
 
 
