@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class FormController extends Controller
@@ -73,8 +74,8 @@ class FormController extends Controller
 
     public function indexProfile()
     {
-        $profiles = User::all();
-        return view('profile', compact('profiles'));
+        $profile = User::find(Auth::user()->id);
+        return view('profile', compact('profile'));
     }
 
 

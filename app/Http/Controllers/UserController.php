@@ -13,11 +13,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return UserResource::collection(User::all());
-        // return User::all();
-    }
+    // public function index()
+    // {
+    //     return view('profile', compact)
+    // }
 
     /**
      * Store a newly created resource in storage.

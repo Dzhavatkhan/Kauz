@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    @foreach ($profiles as $profile)
     <div class="card" style="width:400px">
         <img src="{{$profile->image}}" class="card-img-top"  alt="Card image" >
         
@@ -19,15 +18,14 @@
         <div class="card-body">
           <h4 class="card-title">{{$profile->name}}</h4>
           <p class="card-text">Some example text.</p>
-          <a href="{{route('addVideo')}}">+</a>
+          <a href="{{route('addVideo')}}" class="btn btn-primary">+</a>
 
 
-
+          <a href="{{route('videos')}}">Home</a>
 
           <a href="{{route('logout')}}">Back</a>
         </div>
       </div>
-    @endforeach
 
 
 
